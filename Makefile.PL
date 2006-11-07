@@ -7,6 +7,7 @@ WriteMakefile(
     AUTHOR              => 'Ricardo Signes <rjbs@cpan.org>',
     VERSION_FROM        => 'lib/Parse/GutenbergRoget.pm',
     ABSTRACT_FROM       => 'lib/Parse/GutenbergRoget.pm',
+    LICENSE             => 'perl',
     PL_FILES            => {},
     PREREQ_PM => {
         'Test::More'   => 0,
