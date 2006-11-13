@@ -1,0 +1,12 @@
+Revision history for Parse-GutenbergRoget
+
+0.021   2006-11-13
+        packaging updates
+        minor error handling improvements
+
+0.02    2004-10-07 15:30
+        described file format
+        don't join with space when line ends in hyphen
+
+0.01    2004-10-07 08:00
+        First version, released on an unsuspecting world.
