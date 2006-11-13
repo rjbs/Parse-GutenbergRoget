@@ -1,12 +1,13 @@
-package Parse::GutenbergRoget;
-
 use warnings;
 use strict;
 
+package Parse::GutenbergRoget;
+use base qw(Exporter);
+
+use Carp ();
 use Text::CSV_XS;
 
-use base qw(Exporter);
-our @EXPORT = qw(parse_roget);
+our @EXPORT = qw(parse_roget);  ## no critic Export
 
 =head1 NAME
 
@@ -14,11 +15,13 @@ Parse::GutenbergRoget - parse Project Gutenberg's Roget's Thesaurus
 
 =head1 VERSION
 
-version 0.02
+version 0.021
+
+  $Id$
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.021';
 
 =head1 SYNOPSIS
 
@@ -116,7 +119,7 @@ sub parse_sections {
 	my ($filename) = @_;
 
 	open my $roget, '<', $filename
-		or die "couldn't open $filename: $!";
+		or Carp::croak "couldn't open $filename: $!";
 
 	my $previous_section;
 	my %section;
@@ -150,7 +153,7 @@ sub parse_sections {
 			if ($peeked_line and $peeked_line !~ /^\s{4}/
 				and $peeked_line !~ /^(?:#|%|<--)/)
 			{
-				$line .= ' ' unless (substr($line, -1, 1) eq '-');
+				$line .= q{ } unless (substr($line, -1, 1) eq q{-});
 				$line .= $peeked_line;
 				undef $peeked_line;
 				if ($line =~ /[^,]+,[^.]+\.\s{4}/) {
@@ -173,7 +176,7 @@ sub parse_sections {
 				comments    => [ grep { defined $_ } ($comment_beginning, $comment_end) ]
 			};
 			@{$section{$sec}}{qw[major minor]} = ($sec =~ /^(\d+)(.*)$/);
-			die "$sec" unless $section{$sec}{major};
+			Carp::confess "couldn't parse section: $sec" unless $section{$sec}{major};
 			$previous_section = $sec;
 		} else {
 			$section{$previous_section}{subsections} ||= [];
@@ -195,7 +198,7 @@ sub bloom_sections {
 	my ($section) = @_;
 
 	my $decomma = Text::CSV_XS->new;
-	my $desemi  = Text::CSV_XS->new({sep_char => ';'});
+	my $desemi  = Text::CSV_XS->new({sep_char => q{;}});
 
 	my $types = qr/(Adj|Adv|Int|N|Phr|Pron|V)/;
 

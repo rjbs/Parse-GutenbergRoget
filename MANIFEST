@@ -1,10 +1,9 @@
 Changes
 MANIFEST
-META.yml # Will be created by "make dist"
 Makefile.PL
 README
 lib/Parse/GutenbergRoget.pm
-t/00.load.t
+t/00-load.t
 t/pod-coverage.t
 t/pod.t
 t/perl-critic.t
