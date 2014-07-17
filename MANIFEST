@@ -4,7 +4,5 @@ Makefile.PL
 README
 lib/Parse/GutenbergRoget.pm
 t/00-load.t
-t/pod-coverage.t
-t/pod.t
-t/perl-critic.t
+t/parse.t
 LICENSE
