@@ -13,7 +13,7 @@ unless (-f $thesaurus) {
 
 plan 'no_plan';
 
-BEGIN { use_ok("Parse::GutenbergRoget"); }
+use Parse::GutenbergRoget;
 
 my %roget = parse_roget($thesaurus);
 
