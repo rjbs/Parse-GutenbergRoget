@@ -13,6 +13,13 @@ WriteMakefile(
         'Test::More'   => 0,
         'Text::CSV_XS' => 0,
     },
+    META_MERGE => {
+      resources => {
+        license     => 'http://dev.perl.org/licenses/',
+        bugtracker  => 'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Parse-GutenbergRoget',
+        repository  => 'https://github.com/rjbs/Parse-GutenbergRoget',
+      },
+    },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Parse-GutenbergRoget*' },
 );
